@@ -3,7 +3,7 @@ import {
   fetchStocksList, 
   createAverageVolumesCsv 
 } from "../database"
-import invokeInsertStockController from "./insert-stock"
+import invokeInsertStockController from "./insert-stocks"
 import invokeGetStocksController from "./get-stocks"
 import invokeAverageVolumesController from "./average-volumes-csv"
 
