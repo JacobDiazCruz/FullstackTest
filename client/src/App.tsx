@@ -1,6 +1,6 @@
 import React from "react"
 import "./App.css"
-// import TableView from "./components/TableView"
+import TableView from "./components/TableView"
 import { createTheme, ThemeProvider } from '@mui/material/styles'
 
 const theme = createTheme({
@@ -15,11 +15,11 @@ const theme = createTheme({
   }
 });
 
-const App = () => {
+const App: React.FC = () => {
   return (
     <div className="App">
       <ThemeProvider theme={theme}>
-        {/* <TableView/> */}
+        <TableView/>
       </ThemeProvider>
     </div>
   );

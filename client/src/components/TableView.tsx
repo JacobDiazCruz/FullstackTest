@@ -108,7 +108,7 @@ const Homepage: React.FC = () => {
           <TableBody>
             {loading ?
               // Preloader
-              // <SkeletonLoader columns={headersList}/>
+              <SkeletonLoader columns={headersList}/>
             : <>
                 {stocksList.map(stock => (
                   <TableRow
