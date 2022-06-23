@@ -35,6 +35,21 @@ async function insertStock(data: any) {
   })
 }
 
+/**
+ * @description fetch all data from Stocks
+ * @status done
+ */
+async function fetchStocksList() {
+  sql = `SELECT * FROM StocksHistory`;
+  return await new Promise(function(resolve, reject) {
+    db.all(sql, [], (err: any, rows: ArrayBuffer) => {
+      if(err) reject(err.message)
+      resolve(rows)
+    })
+  })
+}
+
 export default {
-  insertStock
+  insertStock,
+  fetchStocksList
 }
