@@ -1,7 +1,7 @@
 import axios from "axios"
 import { makeHttpError, makeHttpSuccess } from "../helpers/http-response"
 
-export default function makeInsertStockController ({ insertStock }) {
+export default function invokeInsertStockController ({ insertStock }) {
   return async function stockController() {
     try {
       // Declare static symbols
@@ -22,17 +22,17 @@ export default function makeInsertStockController ({ insertStock }) {
         // Iterate inside weekly time series object
         let weeklyTimeSeries = res.data["Weekly Time Series"]
         Object.entries(weeklyTimeSeries).map(async ([date, value]) => {
-          const newSeries = {
+          const newSeriesObj = {
             date,
             stock: symbol
           }
           // Iterate the values for weekly time series and update the object's key to be dynamic
           Object.entries(value).map(([stockKey, stockVal]) => {
             let updatedStockKey = stockKey.replace(/^\d\. /g, "");
-            newSeries[updatedStockKey] = stockVal
+            newSeriesObj[updatedStockKey] = stockVal
           })
           // Insert series object to Stocks DB
-          await insertStock(newSeries)
+          await insertStock(newSeriesObj)
         })
       })
 

@@ -1,6 +1,6 @@
 import { makeHttpError } from "../helpers/http-response"
 
-export default function makeGetStocksController({ fetchStocksList }) {
+export default function invokeGetStocksController({ fetchStocksList }) {
   return async function getStocksController() {
     try {
       // Api call for fetching stocks list
