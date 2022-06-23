@@ -60,7 +60,7 @@ async function createAverageVolumesCsv() {
       if(err) reject(err.message)
 
       // Write csv filename
-      const filename = "average_volume.csv";
+      const filename = "annual_average_volume.csv";
       const writableStream = fs.createWriteStream(filename);
       
       // Declare file columns
@@ -80,6 +80,8 @@ async function createAverageVolumesCsv() {
         stringifier.write(row);
       });
       stringifier.pipe(writableStream);
+      
+      // resolve
       resolve("Success")
     })
   }) 
