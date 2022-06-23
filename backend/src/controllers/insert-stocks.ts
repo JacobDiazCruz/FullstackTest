@@ -1,5 +1,5 @@
 import axios from "axios"
-import { makeHttpError } from "../helpers/http-response"
+import { makeHttpError, makeHttpSuccess } from "../helpers/http-response"
 
 export default function makeInsertStockController ({ insertStock }) {
   return async function stockController() {
@@ -34,6 +34,13 @@ export default function makeInsertStockController ({ insertStock }) {
           // Insert series object to Stocks DB
           await insertStock(newSeries)
         })
+      })
+
+      // return http success
+      return makeHttpSuccess({
+        statusCode: 201,
+        message: "Inserted stocks successfully",
+        stocks: {}
       })
     } catch(err) {
       return makeHttpError({
