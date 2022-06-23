@@ -16,7 +16,16 @@ db.run(sql);
  * @description insert data to Stocks table
  * @status done
  */
-async function insertStock(data: any) {
+interface Stock {
+  date: string
+  stock: string 
+  open: string 
+  high: string 
+  low: string 
+  close: string 
+  volume: string
+}
+async function insertStock(data: Stock) {
   sql = `INSERT INTO StocksHistory(date,stock,open,high,low,close,volume) VALUES (?,?,?,?,?,?,?)`;
   const queries = [
     data.date,
