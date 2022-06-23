@@ -5,7 +5,14 @@ import {
 } from "@mui/material"
 import TableCell, { tableCellClasses } from "@mui/material/TableCell"
 
-const SkeletonLoader  = ({ columns }: any) => {
+interface Props {
+  columns: {
+    title: string
+    sort: boolean
+  }[]
+}
+
+const SkeletonLoader: React.FC<Props>  = ({ columns }) => {
   return (
     <TableRow
       sx={{
@@ -15,10 +22,8 @@ const SkeletonLoader  = ({ columns }: any) => {
       }}
     >
       {columns.map((col: any, key: any) => (
-        <TableCell>
-          <Skeleton
-            key={key}
-          />
+        <TableCell key={key}>
+          <Skeleton />
         </TableCell>
       ))}
     </TableRow>
