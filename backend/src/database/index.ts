@@ -39,7 +39,7 @@ async function insertStock(data: Stock) {
   return await new Promise(function(resolve, reject) {
     db.each(sql, queries, (err: any) => {
       if(err) return reject(err.messsage)
-      console.log("Done inserting")
+      resolve()
     })
   })
 }
