@@ -9,8 +9,8 @@ const db = new sqlite3.Database("stocks.db", sqlite3.OPEN_READWRITE, (err) => {
 })
 
 // Create table
-// sql = `CREATE TABLE StocksHistory(id INTEGER PRIMARY KEY,date,stock,open,high,low,close,volume)`;
-// db.run(sql);
+sql = `CREATE TABLE StocksHistory(id INTEGER PRIMARY KEY,date,stock,open,high,low,close,volume)`;
+db.run(sql);
 
 /**
  * @description insert data to Stocks table
