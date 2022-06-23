@@ -49,7 +49,44 @@ async function fetchStocksList() {
   })
 }
 
+/**
+ * @description create/write average volume csv file
+ * @status done
+ */
+async function createAverageVolumesCsv() {
+  sql = `SELECT stock, avg(volume) average_volume_per_year from StocksHistory group by stock`;
+  return await new Promise(function(resolve, reject) {
+    db.all(sql, [], (err: any, rows: any) => {
+      if(err) reject(err.message)
+
+      // Write csv filename
+      const filename = "average_volume.csv";
+      const writableStream = fs.createWriteStream(filename);
+      
+      // Declare file columns
+      const columns = [
+        "stock",
+        "average_volume_per_year",
+      ];
+      
+      // Stringify columns
+      const stringifier = stringify({ header: true, columns: columns });
+
+      // Perform query to write row
+      db.each(sql, (error: any, row: any) => {
+        if (error) {
+          return error.message
+        }
+        stringifier.write(row);
+      });
+      stringifier.pipe(writableStream);
+      resolve("Success")
+    })
+  }) 
+}
+
 export default {
   insertStock,
-  fetchStocksList
+  fetchStocksList,
+  createAverageVolumesCsv
 }
